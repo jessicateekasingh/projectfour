@@ -1,0 +1,28 @@
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+Header always set Access-Control-Allow-Headers "Content-Type"
+
+RewriteEngine ON
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^pow$ controllers/powr.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^POST$
+RewriteRule ^pow$ controllers/powr.php?action=post
+
+RewriteCond %{REQUEST_METHOD} ^PUT$
+RewriteRule ^pow$ controllers/powr.php?action=update&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^DELETE$
+RewriteRule ^pow$ controllers/powr.php?action=delete&id=$1
+
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_URI} !/blogs/
+RewriteRule . /index.html [L]
+
+DirectoryIndex index.html 
