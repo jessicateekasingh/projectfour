@@ -8,6 +8,9 @@ RewriteCond %{REQUEST_METHOD} ^GET$
 RewriteRule ^powr$ controllers/powr.php?action=index
 
 RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^powr/featured$ controllers/blogs.php?action=featured
+
+RewriteCond %{REQUEST_METHOD} ^GET$
 RewriteRule ^powr/([0-9]+)$ controllers/powr.php?action=single&id=$1
 
 RewriteCond %{REQUEST_METHOD} ^POST$
