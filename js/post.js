@@ -93,7 +93,16 @@ class Post extends React.Component {
               <input onChange={this.changeNewPostTitle} type="text" placeholder="Title" defaultValue={this.state.title} />
               <input onChange={this.changeNewPostPicture} type="text" placeholder="Image URL" defaultValue={this.state.image} />
               <textarea onChange={this.changeNewPostContent} type="text" placeholder="Express yourself!" defaultValue={this.state.content} />
-            </form>
+
+              <div className={"checkbox"}>
+                <label htmlFor="featured">Featured Post?</label>
+                <input onChange={this.changeNewPostIsFeatured} type="checkbox" name={"featured"} id={"featured"} defaultChecked={this.state.is_featured} />
+              </div>//end of checkbox div
+
+              <button type="submit">Edit Post</button>
+              <button type={"button"} onClick={this.deletePost}>Delete Post</button>
+
+            </form>//end of onSubmit form//
           </div>//end of create-post div
         );
     } else {
