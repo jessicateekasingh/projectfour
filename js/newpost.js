@@ -19,7 +19,7 @@ class CreatePost extends React.Component {
     ).then(
       (response) => {
         console.log(response);
-        this.props.history.push('/pow/' + response.data.id);
+        this.props.history.push('/post/' + response.data.id);
       }
     )
   }
@@ -76,7 +76,7 @@ render = () => {
     <label for="featured">Featured Post?</label>
     <input onChange={this.changeNewPostIsFeatured} type="checkbox" name={"featured"} id={"featured"} />
   </div>
-  
+
   <button type="submit">Create Post</button>
   </form>
   </div>

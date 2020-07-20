@@ -140,5 +140,5 @@ class Post extends React.Component {
           this.props.history.push('/');
       });
     }//end deletePost//
-    
+
 }//end of Post class
