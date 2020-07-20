@@ -106,22 +106,39 @@ class Post extends React.Component {
           </div>//end of create-post div
         );
     } else {
-      return (
+        return (
+          <div className={"post"}>
 
-      )
-    }//end of else statement//
+              <div className={"image"}>
+                <img src={this.state.image} />
+              </div>
 
-  }//end of render for editPost//
+              <div className={"title"}>
+                <h2>{this.state.title}</h2>
+              </div>
 
+              <div className={"post-author"}>
+                <p>Author: <span>{this.state.author}</span></p>
+              </div>
 
-  deletePost = () => {
-    axios.delete(
-      '/powr/' + this.state.id,
-    ).then(response => {
-        this.props.history.push('/');
-    });
-  }//end deletePost//
+              <div className={"post-content"}>
+                <p>{this.state.content}</p>
+              </div>
 
+              <div className={"edit"}>
+                <button onClick={this.editPost}>Edit</button>
+              </div>
+          </div>//end of post div//
+          );
+        }//end of else statement//
+    }//end of render for editPost//
 
-
-}
+    deletePost = () => {
+      axios.delete(
+        '/powr/' + this.state.id,
+      ).then(response => {
+          this.props.history.push('/');
+      });
+    }//end deletePost//
+    
+}//end of Post class
