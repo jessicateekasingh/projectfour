@@ -46,6 +46,14 @@ class Slider extends React.Component {
           <Slide slide={this.state.featuredPosts[this.state.currentSlide]} />
         );
       } else {
+        const post = {
+          author: 'test',
+          title: 'test',
+          image: 'test',
+          content: 'test',
+          is_featured: 'test',
+          id: 0
+        };
         return <div></div>;
       }
     }//end of renderSlide
@@ -77,5 +85,32 @@ class Slider extends React.Component {
           currentSlide: prevSlide
         });
       }
-    }
-}
+    }//end of prevSlide
+}//end of class Slider
+
+class Slide extends React.Component {
+  state = {}
+  constructor(props){
+    super(props)
+    this.state.id=props.slide.id
+    this.state.author=props.slide.author;
+    this.state.title=props.slide.title;
+    this.state.image=props.slide.image;
+    this.state.content=props.slide.content;
+    this.state.is_featured=props.slide.is_featured;
+    console.log(props);
+  }//end of constructor
+
+  render = () => {
+    return(
+      <div className={"slide"}>
+        <div className={"image"}>
+          <Link to={"/post/" + this.props.slide.id}><img src={this.props.slide.image} /></Link>
+        </div>
+        <div className={"overlay"}>
+          <button Link to={"/post/" + this.props.slide.id}>Learn More</button>
+        </div>
+      </div>
+    )
+  }//end of render
+}//end of class Slide
