@@ -26,10 +26,11 @@ class Post
   public $content;
   public $is_featured;
 
-  public function __construct($id, $title, $author, $content, $is_featured)
+  public function __construct($id, $title, $image, $author, $content, $is_featured)
     {
         $this->id = $id;
         $this->title = $title;
+        $this->image = $image;
         $this->author = $author;
         $this->content = $content;
         $this->is_featured = $is_featured;
@@ -49,6 +50,7 @@ class Posts
           $new_post = new Post(
             intval($row_object->id),
             $row_object->title,
+            $row_object->image,
             $row_object->author,
             $row_object->content,
             $row_object->is_featured
@@ -73,6 +75,7 @@ static function featured()
             $new_post = new Post(
                 intval($row_object->id),
                 $row_object->title,
+                $row_object->image,
                 $row_object->author,
                 $row_object->content,
                 $row_object->is_featured
@@ -100,6 +103,7 @@ static function single($id)
       $new_post = new Post(
         intval($row_object->id),
         $row_object->title,
+        $row_object->image,
         $row_object->author,
         $row_object->content,
         $row_object->is_featured
@@ -115,8 +119,8 @@ return $post;
 //CREATE POST FUNCTION START//
 static function create($post)
 {
-  $query = "INSERT INTO fitness (title, author, content) VALUES ($1, $2, $3, $4)";
-  $query_params = array($post->title, $post->author, $post->content, intval($post->is_featured));
+  $query = "INSERT INTO fitness (title, author, content) VALUES ($1, $2, $3, $4, $5)";
+  $query_params = array($post->title, $post->image, $post->author, $post->content, intval($post->is_featured));
   pg_query_params($query, $query_params);
 
   $results = pg_query("SELECT * FROM fitness ORDER BY id DESC LIMIT 1");
@@ -125,6 +129,7 @@ static function create($post)
       $new_post = new Post(
         intval($row_object->id),
         $row_object->title,
+        $row_object->image,
         $row_object->author,
         $row_object->content,
         $row_object->is_featured,
@@ -142,8 +147,8 @@ return $post;
 //UPDATE POST FUNCTION START//
 static function update($updated_post)
 {
-  $query = "UPDATE fitness SET title = $1, author = $2, content = $3, is_featured = $4 WHERE id = $5";
-  $query_params = array($updated_post->title, $updated_post->author, $updated_post->content, intval($updated_post->is_featured), $updated_post->id);
+  $query = "UPDATE fitness SET title = $1, image = $2, author = $3, content = $4, is_featured = $5 WHERE id = $6";
+  $query_params = array($updated_post->title, $updated_post->image, $updated_post->author, $updated_post->content, intval($updated_post->is_featured), $updated_post->id);
   $result = pg_query_params($query, $query_params);
 
   return self::all();
@@ -161,7 +166,7 @@ static function delete($id)
 
   return self::all();
   }//end delete func//
-  
+
 }//end posts//
 
 
