@@ -26,7 +26,7 @@ class Powow extends React.Component {
                   <Route path={"/"}>
                       <div className={"posts"}>
                         <Slider />
-                        <
+                        <Posted />
                       </div>
                     </Route>
                 </Switch>
@@ -51,5 +51,5 @@ class Powow extends React.Component {
       })
   }
 
-  
+
 }//end of class Powow//
